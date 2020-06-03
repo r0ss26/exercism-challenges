@@ -55,24 +55,3 @@ class InvalidCodonError < StandardError
     super("The RNA strand contains an invalid codon")
   end
 end
-
-# def convert_RNA_string_to_protein_strings(rna_string)
-#   codon_array = []
-#   i = 0
-#   codon = nil
-#   while i < (rna_string.length - 1) do
-#     codon = rna_string.slice(i, 3)
-#     break if $codon_to_polypeptide[codon.to_sym] == :STOP
-#     codon_array.push(codon) 
-#     i = i + 3
-#   end
-
-#   protein_array = []
-#   codon_array.each do |codon|
-#     protein_array.push($codon_to_polypeptide[codon.to_sym])
-#   end
-
-#   return protein_array.join(" ")
-# end
-
-# convert_RNA_string_to_protein_strings("AUGUUUUCUUAAAUG")
