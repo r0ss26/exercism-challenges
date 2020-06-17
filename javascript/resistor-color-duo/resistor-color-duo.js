@@ -4,7 +4,7 @@
 //
 
 export const decodedValue = (colors) => {
-  return parseInt(colors.slice(0,2).reduce((acc, cur) => acc + COLORS.indexOf(cur), ""))
+  return COLORS.indexOf(colors[0]) * 10 + COLORS.indexOf(colors[1])
 };
 
 const COLORS = ['black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'grey', 'white']
