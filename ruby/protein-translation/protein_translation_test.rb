@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require_relative 'protein_translation'
 
 class TranslationTest < Minitest::Test
+  # Translate individual Codons
   def test_AUG_translates_to_methionine
     assert_equal 'Methionine', Translation.of_codon('AUG')
   end
@@ -45,6 +46,7 @@ class TranslationTest < Minitest::Test
     assert_equal 'Tryptophan', Translation.of_codon('UGG')
   end
 
+  # Translate STOP codon
   def test_identifies_stop_codons
     # skip
     %w(UAA UAG UGA).each do |codon|
@@ -52,6 +54,7 @@ class TranslationTest < Minitest::Test
     end
   end
 
+  # Translate multiple codons
   def test_translates_rna_strand_into_correct_protein
     # skip
     strand = 'AUGUUUUGG'
@@ -59,6 +62,7 @@ class TranslationTest < Minitest::Test
     assert_equal expected, Translation.of_rna(strand)
   end
 
+  # Stops after encountering a stop codon
   def test_stops_translation_if_stop_codon_present
     # skip
     strand = 'AUGUUUUAA'
@@ -73,6 +77,7 @@ class TranslationTest < Minitest::Test
     assert_equal expected, Translation.of_rna(strand)
   end
 
+  # Handles invalid codons
   def test_invalid_codons
     # skip
     strand = 'CARROT'

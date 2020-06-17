@@ -33,16 +33,18 @@ class Translation
 
   def self.of_rna(rna_strand)
     protein_array = []
+
     i = 0
     while i < rna_strand.length - 1 do
-      codon = rna_strand.slice(i, 3)
+      protein = self.of_codon(rna_strand.slice(i, 3).to_sym)
 
-      raise InvalidCodonError.new if !self.of_codon(codon)
+      break if protein == "STOP"
+      raise InvalidCodonError.new if !protein
 
-      break if self.of_codon(codon.to_sym) == "STOP"
-      protein_array.push(self.of_codon(codon)) 
-      i = i + 3
+      protein_array.push(protein) 
+      i += 3
     end
+
     return protein_array
   end
 
